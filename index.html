@@ -8,17 +8,18 @@
     :root {
       --blue: #1a3a6b;
       --accent: #2563eb;
-      --light: #eff6ff;
+      --light: #e8f0fc;
+      --background: #f5f8ff;
       --text: #334e73;
       --muted: #49658b;
-      --border: #c7daf7;
+      --border: #93aed3;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: var(--text); }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--background); color: var(--text); }
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(255,255,255,.96); backdrop-filter: blur(10px);
+      background: rgba(245,248,255,.96); backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       display: flex; justify-content: space-between; align-items: center;
       padding: 0 48px; height: 64px;
@@ -44,18 +45,13 @@
     .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,.2); }
     .btn-outline { border: 1px solid var(--accent); color: var(--accent); }
     .btn-outline:hover { background: var(--light); }
-    section { padding: 80px 24px; background: #fff; }
+    section { padding: 80px 24px; background: var(--background); }
     section[id] { scroll-margin-top: 64px; }
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: .75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
     .section-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--blue); margin-bottom: 16px; }
     .section-divider { width: 48px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 40px; }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
     .about-text p { line-height: 1.85; margin-bottom: 16px; font-size: .97rem; }
-    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .stat-card { background: var(--light); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
-    .stat-card .num { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
-    .stat-card .desc { font-size: .8rem; color: var(--muted); margin-top: 4px; }
     .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px; }
     .topic-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 14px; align-items: flex-start; transition: border-color .2s, transform .2s; }
     .topic-card:hover { border-color: var(--accent); transform: translateY(-2px); }
@@ -65,7 +61,7 @@
     .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
     .tl-item { position: relative; margin-bottom: 32px; }
     .tl-item:last-child { margin-bottom: 0; }
-    .tl-dot { position: absolute; left: -28px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; }
+    .tl-dot { position: absolute; left: -28px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid var(--background); }
     .tl-date { font-size: .8rem; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
     .tl-title { font-size: 1rem; font-weight: 600; color: var(--blue); }
     .tl-desc { font-size: .85rem; color: var(--muted); margin-top: 2px; }
@@ -92,14 +88,14 @@
     .sub-card li::before { content: '→ '; color: var(--accent); }
     .sub-btn-wrap { margin-top: 20px; }
     .sub-btn-wrap .btn { font-size: .85rem; padding: 10px 20px; }
-    footer { background: #fff; text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); }
+    footer { background: var(--background); text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); }
     .footer-logo { font-size: 1.2rem; font-weight: 800; color: var(--blue); margin-bottom: 8px; }
     footer p { font-size: .82rem; color: var(--muted); line-height: 1.6; }
     a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .about-grid, .submission-grid { grid-template-columns: 1fr; }
+      .submission-grid { grid-template-columns: 1fr; }
       .hero-dates { gap: 16px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -139,7 +135,7 @@
       </div>
     </section>
     <section id="about">
-      <div class="container about-grid">
+      <div class="container">
         <div class="about-text">
           <div class="section-label">About the Workshop</div>
           <h2 class="section-title">Why TrustAI-BD?</h2>
@@ -148,12 +144,7 @@
           <p>Unlike traditional deterministic query engines, learned models are inherently stochastic. When an AI-augmented pipeline flags a fraudulent transaction, recommends a treatment plan, or triggers an infrastructure response, the inability to audit the chain of data, model versions, and intermediate decisions is not an academic limitation — it is an operational risk.</p>
           <p>This workshop addresses the foundational question: in a world of shared, AI-augmented data pipelines, how do we verify that results are correct, and how do we ensure they can be reproduced?</p>
         </div>
-        <div class="stats">
-          <div class="stat-card"><div class="num">12</div><div class="desc">Research Topics</div></div>
-          <div class="stat-card"><div class="num">10</div><div class="desc">Page Limit</div></div>
-          <div class="stat-card"><div class="num">IEEE</div><div class="desc">Proceedings</div></div>
-          <div class="stat-card"><div class="num">2026</div><div class="desc">Big Data Conference</div></div>
-        </div>
+
       </div>
     </section>
     <section id="topics">
@@ -201,21 +192,18 @@
           <a class="person-card" href="https://www.linkedin.com/in/anantaa-kotal-5b1bb1112/" target="_blank" rel="noopener noreferrer" aria-label="Anantaa Kotal on LinkedIn (opens in a new tab)">
             <div class="avatar">AK</div>
             <div class="name">Anantaa Kotal</div>
-            <div class="role">Program Co-Chair</div>
             <div class="org">Assistant Professor<br>The University of Texas at El Paso</div>
             <span class="linkedin-label">Website →</span>
           </a>
           <a class="person-card" href="https://www.linkedin.com/in/aritran-piplai-05665576/" target="_blank" rel="noopener noreferrer" aria-label="Aritran Piplai on LinkedIn (opens in a new tab)">
             <div class="avatar">AP</div>
             <div class="name">Aritran Piplai</div>
-            <div class="role">Program Co-Chair</div>
             <div class="org">Assistant Professor<br>The University of Texas at El Paso</div>
             <span class="linkedin-label">Website →</span>
           </a>
           <a class="person-card" href="https://www.linkedin.com/in/prajitdas/" target="_blank" rel="noopener noreferrer" aria-label="Prajit Das on LinkedIn (opens in a new tab)">
             <div class="avatar">PD</div>
             <div class="name">Prajit Das</div>
-            <div class="role">Program Co-Chair</div>
             <div class="org">Security Researcher &amp; Software Engineering Leader<br>Cisco Systems Inc.</div>
             <span class="linkedin-label">Website →</span>
           </a>
@@ -225,7 +213,7 @@
           <li><span class="name">Ted Bedwell</span><span class="role">Cisco Systems Inc.</span></li>
           <li><span class="name">Changxue Deng</span><span class="role">Cisco Systems Inc.</span></li>
           <li><span class="name">John Halloran</span><span class="role">Leidos Inc.</span></li>
-          <li><span class="name">Shaswata Mitra</span><span class="role">Mississipi State University.</span></li>
+          <li><span class="name">Shaswata Mitra</span><span class="role">University of Alabama</span></li>
         </ul>
       </div>
     </section>
