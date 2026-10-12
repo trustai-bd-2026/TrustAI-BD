@@ -1,252 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TrustAI-BD 2026</title>
   <style>
     :root {
-      --navy: #0a1628;
       --blue: #1a3a6b;
-      --accent: #2e7df7;
-      --teal: #00c2cb;
-      --light: #f0f4ff;
-      --text: #cdd8f0;
-      --white: #ffffff;
+      --accent: #2563eb;
+      --light: #eff6ff;
+      --text: #334e73;
+      --muted: #49658b;
+      --border: #c7daf7;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--navy); color: var(--text); }
-
-    /* NAV */
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: var(--text); }
     nav {
-      position: fixed; top:0; width:100%; z-index:100;
-      background: rgba(10,22,40,0.95); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(46,125,247,0.2);
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,.96); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
       display: flex; justify-content: space-between; align-items: center;
       padding: 0 48px; height: 64px;
     }
-    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--white); letter-spacing: 1px; }
-    .nav-logo span { color: var(--teal); }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--blue); letter-spacing: 1px; }
+    .nav-logo span, .footer-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--teal); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0a1628 0%, #0d2048 50%, #0a1628 100%);
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 100px 24px 60px;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(46,125,247,0.12) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 30%, rgba(0,194,203,0.08) 0%, transparent 50%);
-    }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(46,125,247,0.15); border: 1px solid rgba(46,125,247,0.4);
-      color: var(--teal); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
-      padding: 6px 18px; border-radius: 20px; margin-bottom: 24px;
-    }
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: var(--white);
-      line-height: 1.2; max-width: 860px; margin: 0 auto 16px;
-    }
-    .hero h1 span { color: var(--teal); }
-    .hero-sub {
-      font-size: 1.05rem; color: #8aa0c8; max-width: 640px; margin: 0 auto 12px; line-height: 1.7;
-    }
-    .hero-conf {
-      font-size: 0.95rem; color: var(--accent); margin-bottom: 40px;
-    }
-    .hero-dates {
-      display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;
-    }
-    .date-pill {
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px; padding: 14px 24px; text-align: center;
-    }
-    .date-pill .label { font-size: 0.75rem; color: #8aa0c8; text-transform: uppercase; letter-spacing: 1px; }
-    .date-pill .value { font-size: 1rem; font-weight: 700; color: var(--white); margin-top: 4px; }
-    .btn {
-      display: inline-block; padding: 14px 36px; border-radius: 8px;
-      font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.2s;
-    }
-    .btn-primary { background: var(--accent); color: var(--white); }
-    .btn-primary:hover { background: #1a6ce0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,125,247,0.35); }
-    .btn-outline { border: 1px solid rgba(255,255,255,0.2); color: var(--white); margin-left: 16px; }
-    .btn-outline:hover { background: rgba(255,255,255,0.07); }
-
-    /* SECTIONS */
-    section { padding: 80px 24px; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 24px 60px; }
+    .hero-badge { display: inline-block; background: var(--light); border: 1px solid var(--border); color: var(--accent); font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; border-radius: 20px; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: var(--blue); line-height: 1.2; max-width: 860px; margin: 0 auto 16px; }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub { font-size: 1.05rem; max-width: 640px; margin: 0 auto 12px; line-height: 1.7; }
+    .hero-conf { font-size: .95rem; color: var(--accent); margin-bottom: 40px; }
+    .hero-dates { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .date-pill { border: 1px solid var(--border); border-radius: 12px; padding: 14px 24px; text-align: center; }
+    .date-pill .label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .date-pill .value { font-size: 1rem; font-weight: 700; color: var(--blue); margin-top: 4px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+    .btn { display: inline-block; padding: 14px 36px; border-radius: 8px; font-weight: 700; font-size: .95rem; text-decoration: none; transition: background .2s, transform .2s, box-shadow .2s; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,.2); }
+    .btn-outline { border: 1px solid var(--accent); color: var(--accent); }
+    .btn-outline:hover { background: var(--light); }
+    section { padding: 80px 24px; background: #fff; }
+    section[id] { scroll-margin-top: 64px; }
     .container { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 12px;
-    }
-    .section-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--white); margin-bottom: 16px; }
+    .section-label { font-size: .75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--blue); margin-bottom: 16px; }
     .section-divider { width: 48px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 40px; }
-
-    /* ABOUT */
-    #about { background: #0d1e38; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-    .about-text p { color: #9ab0cc; line-height: 1.85; margin-bottom: 16px; font-size: 0.97rem; }
+    .about-text p { line-height: 1.85; margin-bottom: 16px; font-size: .97rem; }
     .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .stat-card {
-      background: rgba(46,125,247,0.08); border: 1px solid rgba(46,125,247,0.2);
-      border-radius: 12px; padding: 20px; text-align: center;
-    }
-    .stat-card .num { font-size: 1.8rem; font-weight: 800; color: var(--teal); }
-    .stat-card .desc { font-size: 0.8rem; color: #8aa0c8; margin-top: 4px; }
-
-    /* TOPICS */
-    #topics { background: var(--navy); }
-    .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-    .topic-card {
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(46,125,247,0.15);
-      border-radius: 12px; padding: 20px 24px;
-      display: flex; gap: 14px; align-items: flex-start;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .topic-card:hover { border-color: rgba(46,125,247,0.5); transform: translateY(-2px); }
-    .topic-icon { font-size: 1.3rem; margin-top: 2px; flex-shrink: 0; }
-    .topic-card p { font-size: 0.9rem; color: #9ab0cc; line-height: 1.5; }
-
-    /* DATES */
-    #dates { background: #0d1e38; }
+    .stat-card { background: var(--light); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+    .stat-card .num { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+    .stat-card .desc { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+    .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px; }
+    .topic-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 14px; align-items: flex-start; transition: border-color .2s, transform .2s; }
+    .topic-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .topic-icon { font-size: .9rem; font-weight: 700; color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+    .topic-card p { font-size: .9rem; line-height: 1.5; }
     .timeline { position: relative; padding-left: 32px; }
-    .timeline::before { content:''; position:absolute; left:8px; top:8px; bottom:8px; width:2px; background: rgba(46,125,247,0.25); }
-    .tl-item { position:relative; margin-bottom: 32px; }
-    .tl-dot {
-      position: absolute; left: -28px; top: 4px;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--accent); border: 2px solid var(--navy);
-    }
-    .tl-date { font-size: 0.8rem; color: var(--teal); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .tl-title { font-size: 1rem; font-weight: 600; color: var(--white); }
-    .tl-desc { font-size: 0.85rem; color: #8aa0c8; margin-top: 2px; }
-
-    /* PEOPLE */
-    #people { background: var(--navy); }
-    .people-section-title { font-size: 1rem; font-weight: 700; color: var(--white); margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 1px; }
-    .people-section-title:first-of-type { margin-top: 0; }
-    .chairs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-    .person-card {
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(46,125,247,0.15);
-      border-radius: 14px; padding: 24px; text-align: center;
-      transition: border-color 0.2s;
-    }
-    .person-card:hover { border-color: rgba(0,194,203,0.4); }
-    .avatar {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--teal));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; font-weight: 800; color: var(--white);
-      margin: 0 auto 14px;
-    }
-    .person-card .name { font-size: 1rem; font-weight: 700; color: var(--white); }
-    .person-card .role { font-size: 0.8rem; color: var(--teal); margin: 4px 0; }
-    .person-card .org { font-size: 0.8rem; color: #8aa0c8; }
-    .committee-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-    .committee-card {
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(46,125,247,0.1);
-      border-radius: 10px; padding: 16px 20px;
-    }
-    .committee-card .name { font-size: 0.95rem; font-weight: 600; color: var(--white); }
-    .committee-card .role { font-size: 0.78rem; color: #8aa0c8; margin-top: 3px; }
-
-    /* SUBMISSION */
-    #submission { background: #0d1e38; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+    .tl-item { position: relative; margin-bottom: 32px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot { position: absolute; left: -28px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; }
+    .tl-date { font-size: .8rem; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .tl-title { font-size: 1rem; font-weight: 600; color: var(--blue); }
+    .tl-desc { font-size: .85rem; color: var(--muted); margin-top: 2px; }
+    .people-section-title { font-size: 1rem; font-weight: 700; color: var(--blue); margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 1px; }
+    .chairs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px; margin-bottom: 40px; }
+    .person-card { display: block; color: var(--text); text-decoration: none; border: 1px solid var(--border); border-radius: 14px; padding: 24px; text-align: center; transition: border-color .2s, box-shadow .2s, transform .2s; }
+    .person-card:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(37,99,235,.12); transform: translateY(-2px); }
+    .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--blue)); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0 auto 14px; }
+    .person-card .name { font-size: 1rem; font-weight: 700; color: var(--blue); }
+    .person-card .role { font-size: .8rem; color: var(--accent); margin: 4px 0; }
+    .person-card .org { font-size: .8rem; color: var(--muted); line-height: 1.6; }
+    .linkedin-label { display: block; margin-top: 14px; color: var(--accent); font-size: .85rem; font-weight: 600; }
+    .committee-list { padding-left: 24px; color: var(--blue); }
+    .committee-list li { padding-left: 4px; margin-bottom: 16px; line-height: 1.6; }
+    .committee-list li::marker { color: var(--accent); }
+    .committee-list .name { font-weight: 600; }
+    .committee-list .role { display: block; font-size: .9rem; color: var(--muted); }
     .submission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-    .sub-card {
-      background: rgba(46,125,247,0.06); border: 1px solid rgba(46,125,247,0.2);
-      border-radius: 14px; padding: 28px;
-    }
-    .sub-card h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .sub-card { background: var(--light); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+    .sub-card h3 { font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: 12px; }
     .sub-card ul { list-style: none; }
-    .sub-card ul li { font-size: 0.9rem; color: #9ab0cc; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); line-height: 1.5; }
-    .sub-card ul li:last-child { border-bottom: none; }
-    .sub-card ul li::before { content: '→ '; color: var(--teal); }
+    .sub-card li { font-size: .9rem; padding: 6px 0; border-bottom: 1px solid var(--border); line-height: 1.5; }
+    .sub-card li:last-child { border-bottom: none; }
+    .sub-card li::before { content: '→ '; color: var(--accent); }
     .sub-btn-wrap { margin-top: 20px; }
-
-    /* FOOTER */
-    footer {
-      background: #060e1c; text-align: center; padding: 40px 24px;
-      border-top: 1px solid rgba(46,125,247,0.1);
-    }
-    footer .footer-logo { font-size: 1.2rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
-    footer .footer-logo span { color: var(--teal); }
-    footer p { font-size: 0.82rem; color: #4a6080; }
-
+    .sub-btn-wrap .btn { font-size: .85rem; padding: 10px 20px; }
+    footer { background: #fff; text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); }
+    .footer-logo { font-size: 1.2rem; font-weight: 800; color: var(--blue); margin-bottom: 8px; }
+    footer p { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
       .about-grid, .submission-grid { grid-template-columns: 1fr; }
       .hero-dates { gap: 16px; }
     }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Trust<span>AI</span>-BD</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#topics">Topics</a></li>
-    <li><a href="#dates">Dates</a></li>
-    <li><a href="#people">People</a></li>
-    <li><a href="#submission">Submit</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div style="position:relative; z-index:1;">
-    <div class="hero-badge">Workshop @ IEEE Big Data 2026</div>
-    <h1>Building <span>Trustworthy AI Pipelines</span> for Big Data</h1>
-    <p class="hero-sub">Verification, Provenance, and Reproducibility in Shared AI-Augmented Data Pipelines</p>
-    <p class="hero-conf">Co-located with IEEE Big Data 2026 · December 14–17, 2026</p>
-    <div class="hero-dates">
-      <div class="date-pill">
-        <div class="label">Paper Submission</div>
-        <div class="value">Oct 31, 2026</div>
-      </div>
-      <div class="date-pill">
-        <div class="label">Acceptance Notice</div>
-        <div class="value">Nov 14, 2026</div>
-      </div>
-      <div class="date-pill">
-        <div class="label">Camera-Ready</div>
-        <div class="value">Nov 23, 2026</div>
-      </div>
-      <div class="date-pill">
-        <div class="label">Workshop Dates</div>
-        <div class="value">Dec 14–17, 2026</div>
-      </div>
-    </div>
-    <a href="https://wi-lab.com/cyberchair/2026/bigdata26/index.php" class="btn btn-primary" target="_blank">Submit Paper</a>
-    <a href="#about" class="btn btn-outline">Learn More</a>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="section-label">About the Workshop</div>
-        <div class="section-title">Why TrustAI-BD?</div>
-        <div class="section-divider"></div>
-        <p>Modern big data pipelines do not operate in isolation — they increasingly span teams, institutions, and organizational boundaries. Datasets, intermediate artifacts, trained models, and downstream decisions flow across organizational boundaries, between teams, and through multi-institution collaborations, as seen in federated healthcare analytics, financial risk platforms, and large-scale scientific consortia.</p>
-        <p>Unlike traditional deterministic query engines, learned models are inherently stochastic. When an AI-augmented pipeline flags a fraudulent transaction, recommends a treatment plan, or triggers an infrastructure response, the inability to audit the chain of data, model versions, and intermediate decisions is not an academic limitation — it is an operational risk.</p>
-        <p>This workshop addresses the foundational question: in a world of shared, AI-augmented data pipelines, how do we verify that results are correct, and how do we ensure they can be reproduced?</p>
-      </div>
+  <nav aria-label="Main navigation">
+    <div class="nav-logo">Trust<span>AI</span>-BD</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#topics">Topics</a></li>
+      <li><a href="#dates">Dates</a></li>
+      <li><a href="#people">People</a></li>
+      <li><a href="#submission">Submit</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="hero">
       <div>
+        <div class="hero-badge">Workshop @ IEEE Big Data 2026</div>
+        <h1>Building <span>Trustworthy AI Pipelines</span> for Big Data</h1>
+        <p class="hero-sub">Verification, Provenance, and Reproducibility in Shared AI-Augmented Data Pipelines</p>
+        <p class="hero-conf">Co-located with IEEE Big Data 2026 · December 14–17, 2026</p>
+        <div class="hero-dates">
+          <div class="date-pill"><div class="label">Paper Submission</div><div class="value">Oct 31, 2026</div></div>
+          <div class="date-pill"><div class="label">Acceptance Notice</div><div class="value">Nov 14, 2026</div></div>
+          <div class="date-pill"><div class="label">Camera-Ready</div><div class="value">Nov 23, 2026</div></div>
+          <div class="date-pill"><div class="label">Workshop Dates</div><div class="value">Dec 14–17, 2026</div></div>
+        </div>
+        <div class="hero-actions">
+          <a href="https://wi-lab.com/cyberchair/2026/bigdata26/index.php" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Submit Paper</a>
+          <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <div class="section-label">About the Workshop</div>
+          <h2 class="section-title">Why TrustAI-BD?</h2>
+          <div class="section-divider"></div>
+          <p>Modern big data pipelines do not operate in isolation — they increasingly span teams, institutions, and organizational boundaries. Datasets, intermediate artifacts, trained models, and downstream decisions flow across organizational boundaries, between teams, and through multi-institution collaborations, as seen in federated healthcare analytics, financial risk platforms, and large-scale scientific consortia.</p>
+          <p>Unlike traditional deterministic query engines, learned models are inherently stochastic. When an AI-augmented pipeline flags a fraudulent transaction, recommends a treatment plan, or triggers an infrastructure response, the inability to audit the chain of data, model versions, and intermediate decisions is not an academic limitation — it is an operational risk.</p>
+          <p>This workshop addresses the foundational question: in a world of shared, AI-augmented data pipelines, how do we verify that results are correct, and how do we ensure they can be reproduced?</p>
+        </div>
         <div class="stats">
           <div class="stat-card"><div class="num">12</div><div class="desc">Research Topics</div></div>
           <div class="stat-card"><div class="num">10</div><div class="desc">Page Limit</div></div>
@@ -254,152 +155,112 @@
           <div class="stat-card"><div class="num">2026</div><div class="desc">Big Data Conference</div></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- TOPICS -->
-<section id="topics">
-  <div class="container">
-    <div class="section-label">Call for Papers</div>
-    <div class="section-title">Research Topics</div>
-    <div class="section-divider"></div>
-    <div class="topics-grid">
-      <div class="topic-card"><div class="topic-icon">🔗</div><p>Data Provenance and Lineage in Shared Big Data Pipelines</p></div>
-      <div class="topic-card"><div class="topic-icon">🔁</div><p>Reproducibility of AI/ML Model Decisions at Scale</p></div>
-      <div class="topic-card"><div class="topic-icon">✅</div><p>Verification of Cross-Organizational Data and Model Artifacts</p></div>
-      <div class="topic-card"><div class="topic-icon">📉</div><p>Model Drift and Pipeline Staleness Detection</p></div>
-      <div class="topic-card"><div class="topic-icon">🏛️</div><p>Auditing and Accountability Across Multi-Party and Cross-Organizational Workflows</p></div>
-      <div class="topic-card"><div class="topic-icon">🔒</div><p>Federated Auditing and Privacy-Preserving Verification</p></div>
-      <div class="topic-card"><div class="topic-icon">🧠</div><p>Explainability and Auditability of Black-Box Pipeline Components</p></div>
-      <div class="topic-card"><div class="topic-icon">🗂️</div><p>Versioning Strategies for Data, Models, and Code in Multi-Party Workflows</p></div>
-      <div class="topic-card"><div class="topic-icon">🤝</div><p>Trust Propagation and Accountability Across Pipeline Stages</p></div>
-      <div class="topic-card"><div class="topic-icon">🤖</div><p>Reproducibility Challenges in Foundation-Model, RAG, and Agentic Data Workflows</p></div>
-      <div class="topic-card"><div class="topic-icon">📊</div><p>Benchmarking and Evaluation Under Real-World Deployment Conditions</p></div>
-      <div class="topic-card"><div class="topic-icon">📋</div><p>Case Studies in Deployed Systems: Failures, Reproducibility Incidents, and Lessons Learned</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- DATES -->
-<section id="dates">
-  <div class="container">
-    <div class="section-label">Important Dates</div>
-    <div class="section-title">Key Deadlines</div>
-    <div class="section-divider"></div>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">October 31, 2026</div>
-        <div class="tl-title">Full Paper Submission Deadline</div>
-        <div class="tl-desc">Submit via the online submission system</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">November 14, 2026</div>
-        <div class="tl-title">Notification of Acceptance</div>
-        <div class="tl-desc">Authors notified of paper acceptance decisions</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">November 23, 2026</div>
-        <div class="tl-title">Camera-Ready Submission</div>
-        <div class="tl-desc">Final version of accepted papers due</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot" style="background: var(--teal);"></div>
-        <div class="tl-date">December 14–17, 2026</div>
-        <div class="tl-title">Workshop @ IEEE Big Data 2026</div>
-        <div class="tl-desc">Workshop sessions held at the conference</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PEOPLE -->
-<section id="people">
-  <div class="container">
-    <div class="section-label">Organization</div>
-    <div class="section-title">People</div>
-    <div class="section-divider"></div>
-
-    <div class="people-section-title">Program Chairs</div>
-    <div class="chairs-grid">
-      <div class="person-card">
-        <div class="avatar">AK</div>
-        <div class="name">Anantaa Kotal</div>
-        <div class="role">Program Co-Chair</div>
-        <div class="org">Assistant Professor<br>The University of Texas at El Paso</div>
-      </div>
-      <div class="person-card">
-        <div class="avatar">AP</div>
-        <div class="name">Aritran Piplai</div>
-        <div class="role">Program Co-Chair</div>
-        <div class="org">Assistant Professor<br>The University of Texas at El Paso</div>
-      </div>
-      <div class="person-card">
-        <div class="avatar">PD</div>
-        <div class="name">Prajit Das</div>
-        <div class="role">Program Co-Chair</div>
-        <div class="org">Security Researcher & Software Engineering Leader<br>Cisco Systems Inc.</div>
-      </div>
-    </div>
-
-    <div class="people-section-title">Program Committee</div>
-    <div class="committee-grid">
-      <div class="committee-card">
-        <div class="name">Ted Bedwell</div>
-        <div class="role">Distinguished Engineer · Cisco Systems Inc.</div>
-      </div>
-      <div class="committee-card">
-        <div class="name">Changxue Deng</div>
-        <div class="role">Software Engineering Technical Leader · Cisco Systems Inc.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SUBMISSION -->
-<section id="submission">
-  <div class="container">
-    <div class="section-label">Paper Submission</div>
-    <div class="section-title">How to Submit</div>
-    <div class="section-divider"></div>
-    <div class="submission-grid">
-      <div class="sub-card">
-        <h3>📄 Submission Guidelines</h3>
-        <ul>
-          <li>Full-length papers up to 10 pages (IEEE 2-column format)</li>
-          <li>References counted within the 10-page limit</li>
-          <li>IEEE Computer Society Proceedings formatting required</li>
-          <li>All accepted papers included in IEEE Big Data Proceedings</li>
-        </ul>
-        <div class="sub-btn-wrap">
-          <a href="https://www.ieee.org/conferences/publishing/templates.html" class="btn btn-outline" target="_blank" style="font-size:0.85rem; padding:10px 20px;">IEEE Formatting Templates</a>
+    </section>
+    <section id="topics">
+      <div class="container">
+        <div class="section-label">Call for Papers</div>
+        <h2 class="section-title">Research Topics</h2>
+        <div class="section-divider"></div>
+        <div class="topics-grid">
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">01</div><p>Data Provenance and Lineage in Shared Big Data Pipelines</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">02</div><p>Reproducibility of AI/ML Model Decisions at Scale</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">03</div><p>Verification of Cross-Organizational Data and Model Artifacts</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">04</div><p>Model Drift and Pipeline Staleness Detection</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">05</div><p>Auditing and Accountability Across Multi-Party and Cross-Organizational Workflows</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">06</div><p>Federated Auditing and Privacy-Preserving Verification</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">07</div><p>Explainability and Auditability of Black-Box Pipeline Components</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">08</div><p>Versioning Strategies for Data, Models, and Code in Multi-Party Workflows</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">09</div><p>Trust Propagation and Accountability Across Pipeline Stages</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">10</div><p>Reproducibility Challenges in Foundation-Model, RAG, and Agentic Data Workflows</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">11</div><p>Benchmarking and Evaluation Under Real-World Deployment Conditions</p></div>
+          <div class="topic-card"><div class="topic-icon" aria-hidden="true">12</div><p>Case Studies in Deployed Systems: Failures, Reproducibility Incidents, and Lessons Learned</p></div>
         </div>
       </div>
-      <div class="sub-card">
-        <h3>🚀 Submit Your Paper</h3>
-        <ul>
-          <li>Submit through the official online system</li>
-          <li>Deadline: October 31, 2026</li>
-          <li>Notifications sent by November 14, 2026</li>
-          <li>Camera-ready due November 23, 2026</li>
-        </ul>
-        <div class="sub-btn-wrap">
-          <a href="https://wi-lab.com/cyberchair/2026/bigdata26/index.php" class="btn btn-primary" target="_blank" style="font-size:0.85rem; padding:10px 20px;">Submit via CyberChair →</a>
+    </section>
+    <section id="dates">
+      <div class="container">
+        <div class="section-label">Important Dates</div>
+        <h2 class="section-title">Key Deadlines</h2>
+        <div class="section-divider"></div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">October 31, 2026</div><div class="tl-title">Full Paper Submission Deadline</div><div class="tl-desc">Submit via the online submission system</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">November 14, 2026</div><div class="tl-title">Notification of Acceptance</div><div class="tl-desc">Authors notified of paper acceptance decisions</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">November 23, 2026</div><div class="tl-title">Camera-Ready Submission</div><div class="tl-desc">Final version of accepted papers due</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">December 14–17, 2026</div><div class="tl-title">Workshop @ IEEE Big Data 2026</div><div class="tl-desc">Workshop sessions held at the conference</div></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Trust<span>AI</span>-BD 2026</div>
-  <p style="margin-bottom:6px;">Building Trustworthy AI Pipelines for Big Data: Verification, Provenance, and Reproducibility</p>
-  <p>Co-located with IEEE Big Data 2026 · December 14–17, 2026</p>
-</footer>
-
+    </section>
+    <section id="people">
+      <div class="container">
+        <div class="section-label">Organization</div>
+        <h2 class="section-title">People</h2>
+        <div class="section-divider"></div>
+        <h3 class="people-section-title">Program Chairs</h3>
+        <!-- TODO: Replace each LINKEDIN_URL placeholder with the correct full profile URL. -->
+        <div class="chairs-grid">
+          <a class="person-card" href="ANANTAA_LINKEDIN_URL" target="_blank" rel="noopener noreferrer" aria-label="Anantaa Kotal on LinkedIn (opens in a new tab)">
+            <div class="avatar">AK</div>
+            <div class="name">Anantaa Kotal</div>
+            <div class="role">Program Co-Chair</div>
+            <div class="org">Assistant Professor<br>The University of Texas at El Paso</div>
+            <span class="linkedin-label">View LinkedIn Profile →</span>
+          </a>
+          <a class="person-card" href="ARITRAN_LINKEDIN_URL" target="_blank" rel="noopener noreferrer" aria-label="Aritran Piplai on LinkedIn (opens in a new tab)">
+            <div class="avatar">AP</div>
+            <div class="name">Aritran Piplai</div>
+            <div class="role">Program Co-Chair</div>
+            <div class="org">Assistant Professor<br>The University of Texas at El Paso</div>
+            <span class="linkedin-label">View LinkedIn Profile →</span>
+          </a>
+          <a class="person-card" href="PRAJIT_LINKEDIN_URL" target="_blank" rel="noopener noreferrer" aria-label="Prajit Das on LinkedIn (opens in a new tab)">
+            <div class="avatar">PD</div>
+            <div class="name">Prajit Das</div>
+            <div class="role">Program Co-Chair</div>
+            <div class="org">Security Researcher &amp; Software Engineering Leader<br>Cisco Systems Inc.</div>
+            <span class="linkedin-label">View LinkedIn Profile →</span>
+          </a>
+        </div>
+        <h3 class="people-section-title">Program Committee</h3>
+        <ul class="committee-list">
+          <li><span class="name">Ted Bedwell</span><span class="role">Distinguished Engineer · Cisco Systems Inc.</span></li>
+          <li><span class="name">Changxue Deng</span><span class="role">Software Engineering Technical Leader · Cisco Systems Inc.</span></li>
+        </ul>
+      </div>
+    </section>
+    <section id="submission">
+      <div class="container">
+        <div class="section-label">Paper Submission</div>
+        <h2 class="section-title">How to Submit</h2>
+        <div class="section-divider"></div>
+        <div class="submission-grid">
+          <div class="sub-card">
+            <h3>Submission Guidelines</h3>
+            <ul>
+              <li>Full-length papers up to 10 pages (IEEE 2-column format)</li>
+              <li>References counted within the 10-page limit</li>
+              <li>IEEE Computer Society Proceedings formatting required</li>
+              <li>All accepted papers included in IEEE Big Data Proceedings</li>
+            </ul>
+            <div class="sub-btn-wrap"><a href="https://www.ieee.org/conferences/publishing/templates.html" class="btn btn-outline" target="_blank" rel="noopener noreferrer">IEEE Formatting Templates</a></div>
+          </div>
+          <div class="sub-card">
+            <h3>Submit Your Paper</h3>
+            <ul>
+              <li>Submit through the official online system</li>
+              <li>Deadline: October 31, 2026</li>
+              <li>Notifications sent by November 14, 2026</li>
+              <li>Camera-ready due November 23, 2026</li>
+            </ul>
+            <div class="sub-btn-wrap"><a href="https://wi-lab.com/cyberchair/2026/bigdata26/index.php" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Submit via CyberChair →</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-logo">Trust<span>AI</span>-BD 2026</div>
+    <p style="margin-bottom: 6px;">Building Trustworthy AI Pipelines for Big Data: Verification, Provenance, and Reproducibility</p>
+    <p>Co-located with IEEE Big Data 2026 · December 14–17, 2026</p>
+  </footer>
 </body>
 </html>
